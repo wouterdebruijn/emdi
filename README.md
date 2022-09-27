@@ -1,4 +1,5 @@
-# fresh project
+# Extra Media Dashboard Interface
+A extra media dashboard interface for end user interaction with Radarr and Sonarr.
 
 ### Usage
 
