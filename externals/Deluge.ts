@@ -124,6 +124,7 @@ export interface Torrent {
   time_since_download: number;
   time_since_upload: number;
   time_since_transfer: number;
+  id: string;
 }
 
 export interface DelugeTorrentResponse {
@@ -191,6 +192,14 @@ export class DelugeAPI extends ExternalApi {
       },
     );
 
-    return Object.values(response.result);
+    const torrents = Object.values(response.result);
+    const ids = Object.keys(response.result);
+
+    return torrents.map((torrent, index) => {
+      return {
+        ...torrent,
+        id: ids[index],
+      };
+    });
   }
 }
