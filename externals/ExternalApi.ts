@@ -54,14 +54,17 @@ export class ExternalApi {
     );
   }
 
-  protected post<T extends Promise<unknown>>(
+  protected post<T>(
     endpoint: string,
-    body: unknown,
+    body: BodyInit,
     init?: RequestInit,
-  ) {
+  ): Promise<T> {
     return fetch(new URL(endpoint, this.baseURL), {
       method: "POST",
-      body: JSON.stringify(body),
+      body,
+      headers: {
+        "Content-Type": "application/json",
+      },
       ...init,
     }).then(async (response) => {
       if (
@@ -121,5 +124,9 @@ export class ExternalApi {
 
       throw new ApiError(response, await response.text());
     });
+  }
+
+  protected getBaseURL(): URL {
+    return this.baseURL;
   }
 }
