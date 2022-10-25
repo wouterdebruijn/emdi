@@ -132,7 +132,6 @@ export interface DelugeTorrentResponse {
   id: number;
 }
 
-
 export class DelugeAPI extends ExternalApi {
   private password: string;
 
@@ -189,7 +188,7 @@ export class DelugeAPI extends ExternalApi {
           "Content-Type": "application/json",
           Cookie: authentication_cookie,
         },
-      }
+      },
     );
 
     return Object.values(response.result);
