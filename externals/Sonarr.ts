@@ -166,9 +166,12 @@ export class SonarrAPI extends ExternalApi {
   }
 
   public async getQueue(): Promise<SeriesQueue[]> {
-    const response = await this.get<QueueResponse>("/api/v3/queue?page=1&pageSize=100", {
-      headers: this.authenticationHeaders(),
-    });
+    const response = await this.get<QueueResponse>(
+      "/api/v3/queue?page=1&pageSize=100",
+      {
+        headers: this.authenticationHeaders(),
+      },
+    );
 
     // TODO: Add pagination
 
