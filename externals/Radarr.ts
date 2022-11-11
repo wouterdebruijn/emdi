@@ -132,7 +132,7 @@ export interface Movie {
   id: number;
 }
 
-export interface QueueItem {
+export interface MovieQueue {
   movieId: number;
   languages: Language[];
   quality: Quality;
@@ -183,8 +183,8 @@ export class RadarrAPI extends ExternalApi {
     return mapped;
   }
 
-  public async getQueue(): Promise<QueueItem[]> {
-    const response = await this.get<QueueItem[]>("/api/v3/queue/details", {
+  public async getQueue(): Promise<MovieQueue[]> {
+    const response = await this.get<MovieQueue[]>("/api/v3/queue/details", {
       headers: this.authenticationHeaders(),
     });
 

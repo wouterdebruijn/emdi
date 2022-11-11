@@ -14,6 +14,7 @@ import twindConfig from "./twind.config.ts";
 
 import { RadarrAPI } from "./externals/Radarr.ts";
 import { DelugeAPI } from "./externals/Deluge.ts";
+import { SonarrAPI } from "./externals/Sonarr.ts";
 
 const radarr = new RadarrAPI(
   new URL("https://radarr.hedium.nl"),
@@ -24,9 +25,17 @@ const deluge = new DelugeAPI(
   Deno.env.get("DELUGE_PASSWORD")!,
 );
 
+const sonarr = new SonarrAPI(
+  new URL("https://sonarr.hedium.nl"),
+  Deno.env.get("SONARR_API_KEY")!,
+);
+
 export const services = {
   radarr,
   deluge,
+  sonarr,
 };
 
-await start(manifest, { plugins: [twindPlugin(twindConfig)] });
+await start(manifest, {
+  plugins: [twindPlugin(twindConfig)],
+});
