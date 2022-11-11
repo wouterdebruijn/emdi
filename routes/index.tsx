@@ -5,11 +5,11 @@ import { Series, SeriesQueue } from "../externals/Sonarr.ts";
 
 import { MovieList } from "../components/MovieList.tsx";
 import { SeriesList } from "../components/SeriesList.tsx";
-import { TorrentList } from "../components/TorrentList.tsx";
 import { MovieQueueList } from "../components/MovieQueueList.tsx";
 import { SeriesQueueList } from "../components/SeriesQueueList.tsx";
 
 import { services } from "../main.ts";
+import { JSXInternal } from "https://esm.sh/v95/preact@10.11.0/src/jsx.d.ts";
 
 function getLatestMovies() {
   return services.radarr.getMovies();
@@ -25,10 +25,6 @@ function getCurrentMovieQueue() {
 
 function getCurrentSeriesQueue() {
   return services.sonarr.getQueue();
-}
-
-function getCurrentTorrents() {
-  return services.deluge.getTorrents();
 }
 
 interface Data {
@@ -60,6 +56,27 @@ export const handler: Handlers<Data> = {
 };
 
 export default function Home({ data }: PageProps<Data>) {
+  let movieQueueList: JSXInternal.Element | null = null;
+  let seriesQueueList: JSXInternal.Element | null = null;
+
+  if (data.radarrQueue.length > 0) {
+    movieQueueList = (
+      <section class="mx-2 m-3">
+        <h1 class="text-xl font-bold text-white">Current Movie Queue</h1>
+        <MovieQueueList queue={data.radarrQueue} movies={data.movies} />
+      </section>
+    );
+  }
+
+  if (data.sonarrQueue.length > 0) {
+    seriesQueueList = (
+      <section class="mx-2 m-3">
+        <h1 class="text-xl font-bold text-white">Current Series Queue</h1>
+        <SeriesQueueList queue={data.sonarrQueue} series={data.series} />
+      </section>
+    );
+  }
+
   return (
     <div class="bg-gray-900 min-h-screen pb-16">
       <div class="max-w-screen">
@@ -83,15 +100,9 @@ export default function Home({ data }: PageProps<Data>) {
         <SeriesList series={Array.from(data.series).slice(0, data.limit)} />
       </section>
 
-      <section class="mx-2 m-3">
-        <h1 class="text-xl font-bold text-white">Current Movie Queue</h1>
-        <MovieQueueList queue={data.radarrQueue} movies={data.movies} />
-      </section>
+      {movieQueueList}
 
-      <section class="mx-2 m-3">
-        <h1 class="text-xl font-bold text-white">Current Series Queue</h1>
-        <SeriesQueueList queue={data.sonarrQueue} series={data.series} />
-      </section>
+      {seriesQueueList}
     </div>
   );
 }
