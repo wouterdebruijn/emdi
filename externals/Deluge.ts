@@ -14,8 +14,8 @@ export interface Tracker {
   verified: boolean;
   message: string;
   last_error: LastError;
-  next_announce?: any;
-  min_announce?: any;
+  next_announce?: unknown;
+  min_announce?: unknown;
   scrape_incomplete: number;
   scrape_complete: number;
   scrape_downloaded: number;
@@ -23,7 +23,7 @@ export interface Tracker {
   updating: boolean;
   start_sent: boolean;
   complete_sent: boolean;
-  endpoints: any[];
+  endpoints: unknown[];
   send_stats: boolean;
 }
 
@@ -112,13 +112,13 @@ export interface Torrent {
   files: File[];
   orig_files: OrigFile[];
   is_seed: boolean;
-  peers: any[];
+  peers: unknown[];
   queue: number;
   ratio: number;
   completed_time: number;
   last_seen_complete: number;
   name: string;
-  pieces?: any;
+  pieces?: unknown;
   seed_mode: boolean;
   super_seeding: boolean;
   time_since_download: number;
@@ -129,7 +129,7 @@ export interface Torrent {
 
 export interface DelugeTorrentResponse {
   result: Record<string, Torrent>;
-  error?: any;
+  error?: unknown;
   id: number;
 }
 

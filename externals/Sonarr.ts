@@ -117,7 +117,7 @@ export interface SeriesQueue {
   status: string;
   trackedDownloadStatus: string;
   trackedDownloadState: string;
-  statusMessages: any[];
+  statusMessages: string[];
   downloadId: string;
   protocol: string;
   downloadClient: string;
