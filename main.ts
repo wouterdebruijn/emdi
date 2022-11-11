@@ -17,16 +17,16 @@ import { DelugeAPI } from "./externals/Deluge.ts";
 import { SonarrAPI } from "./externals/Sonarr.ts";
 
 const radarr = new RadarrAPI(
-  new URL("https://radarr.hedium.nl"),
+  new URL(Deno.env.get("RADARR_URL")!),
   Deno.env.get("RADARR_API_KEY")!,
 );
 const deluge = new DelugeAPI(
-  new URL("https://mediadownload.hedium.nl"),
+  new URL(Deno.env.get("DELUGE_URL")!),
   Deno.env.get("DELUGE_PASSWORD")!,
 );
 
 const sonarr = new SonarrAPI(
-  new URL("https://sonarr.hedium.nl"),
+  new URL(Deno.env.get("SONARR_URL")!),
   Deno.env.get("SONARR_API_KEY")!,
 );
 
