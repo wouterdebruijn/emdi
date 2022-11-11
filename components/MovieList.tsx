@@ -23,7 +23,9 @@ function MovieStatus({ movie }: { movie: Movie }) {
   if (movie.isAvailable === false) {
     return (
       <p class="text-yellow-500">
-        Waiting {movie.physicalRelease.toLocaleDateString()}
+        Waiting {!isNaN(movie.physicalRelease.valueOf())
+          ? movie.physicalRelease.toLocaleDateString()
+          : ""}
       </p>
     );
   }
