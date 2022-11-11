@@ -29,7 +29,7 @@ function SeriesElement({ series }: { series: Series }) {
   return (
     <div class="mt-2 mr-4 bg-gray-800 rounded">
       <div
-        class="w-48 h-72 bg-cover rounded-t"
+        class="w-40 h-60 bg-cover rounded-t"
         style={`background-image: url("${series.images[1]?.remoteUrl}");`}
       />
       <div class="left-0 right-0 p-2 text-center">

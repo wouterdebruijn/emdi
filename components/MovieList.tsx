@@ -41,7 +41,7 @@ function MovieElement({ movie }: { movie: Movie }) {
   return (
     <div class="mt-2 mr-4 bg-gray-800 rounded">
       <div
-        class="w-48 h-72 bg-cover rounded-t"
+        class="w-40 h-60 bg-cover rounded-t"
         style={`background-image: url("${movie.images[0]?.remoteUrl}");`}
       />
       <div class="left-0 right-0 p-2 text-center">

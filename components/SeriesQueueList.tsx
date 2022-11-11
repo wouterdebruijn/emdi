@@ -34,7 +34,7 @@ function SeriesQueueElement({ queueItem }: { queueItem: SeriesQueueExtended }) {
   return (
     <div class="mt-2 mr-4 bg-gray-800 rounded text-white">
       <div
-        class="w-48 h-72 bg-cover rounded-t"
+        class="w-40 h-60 bg-cover rounded-t"
         style={`background-image: url("${queueItem.image}");`}
       >
         {queueItem.seriesId}
