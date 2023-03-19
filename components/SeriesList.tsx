@@ -14,6 +14,10 @@ function isNew(date: Date) {
 }
 
 function SeriesStatus({ series }: { series: Series }) {
+  if (typeof series.statistics == "undefined") {
+    return <p class="text-gray-500">Unknown</p>;
+  }
+  
   if (series.statistics.percentOfEpisodes == 100) {
     return <p class="text-green-500">On Emby</p>;
   }

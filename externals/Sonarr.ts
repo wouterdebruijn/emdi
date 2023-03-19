@@ -77,7 +77,7 @@ export interface Series {
   tags: string[];
   added: Date;
   ratings: Ratings;
-  statistics: Statistics;
+  statistics?: Statistics;
   id: number;
 }
 
