@@ -1,16 +1,28 @@
-FROM denoland/deno:latest
+FROM frolvlad/alpine-glibc:latest
 
-# The port that your application listens to.
-EXPOSE 8000
+# Add certificates
+RUN apk add --no-cache ca-certificates
+COPY ./Hedium.nl.pem /etc/ssl/certs/Hedium.nl.pem
 
+# Install Deno
+RUN apk add --no-cache curl unzip git 
+RUN curl -fsSL https://deno.land/x/install/install.sh | sh
+
+# Add Deno to PATH
+ENV DENO_INSTALL="/root/.deno"
+ENV PATH="$DENO_INSTALL/bin:$PATH"
+
+# Install Deno dependencies
 WORKDIR /app
 
-# Prefer not to run as root.
-USER deno
+# Copy source code
+COPY . .
 
-# These steps will be re-run upon each file change in your working directory:
-ADD . .
-# Compile the main app so that it doesn't need to be compiled each startup/entry.
-RUN deno cache main.ts
+# Build and run
+RUN deno cache --lock=lock.json --lock-write main.ts
+RUN deno cache --lock=lock.json main.ts
 
-CMD ["run", "--allow-net", "--allow-read", "--allow-env", "main.ts"]
+ENTRYPOINT [ "./entrypoint.sh" ]
+
+# Run
+CMD ["deno", "run", "--allow-net", "--allow-read", "--allow-env", "--unstable", "main.ts"]
