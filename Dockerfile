@@ -1,9 +1,5 @@
 FROM frolvlad/alpine-glibc:latest
 
-# Add certificates
-RUN apk add --no-cache ca-certificates
-COPY ./Hedium.nl.pem /etc/ssl/certs/Hedium.nl.pem
-
 # Install Deno
 RUN apk add --no-cache curl unzip git 
 RUN curl -fsSL https://deno.land/x/install/install.sh | sh
