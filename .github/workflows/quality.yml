@@ -1,28 +1,24 @@
-name: Checks
+name: Deno format and lint
 
 on:
   push:
-    branches:
-      - main
-
+  
 jobs:
   quality:
     name: Quality
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout sources
         uses: actions/checkout@v2
+
       - name: Setup latest Deno version
         uses: denolib/setup-deno@v2
         with:
           deno-version: v1.x
+
       - name: Run Deno fmt
-        run: deno fmt --check **/*.ts
+        run: deno fmt --check
+
       - name: Run Deno lint
-        run: deno lint **/*.ts
-  docker:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag emdi:$(date +%s)
+        run: deno lint

@@ -1,4 +1,4 @@
-name: Updates
+name: Deno dependencies update PRs
 
 on:
   schedule:
@@ -8,15 +8,19 @@ jobs:
   update:
     name: Updates
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout sources
         uses: actions/checkout@v2
+
       - name: Setup latest Deno version
         uses: denolib/setup-deno@v2
         with:
           deno-version: v1.x
+
       - name: Update dependencies
         run: deno run -A https://deno.land/x/udd/main.ts **/*.ts
+
       - name: Create pull request
         uses: peter-evans/create-pull-request@v3
         id: pr
@@ -27,6 +31,7 @@ jobs:
           branch: updates
           author: GitHub <noreply@github.com>
           delete-branch: true
+    
       - name: Retrieve commit SHA
         id: commit
         run: |
