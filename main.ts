@@ -13,16 +13,11 @@ import twindPlugin from "$fresh/plugins/twind.ts";
 import twindConfig from "./twind.config.ts";
 
 import { RadarrAPI } from "./externals/Radarr.ts";
-import { DelugeAPI } from "./externals/Deluge.ts";
 import { SonarrAPI } from "./externals/Sonarr.ts";
 
 const radarr = new RadarrAPI(
   new URL(Deno.env.get("RADARR_URL")!),
   Deno.env.get("RADARR_API_KEY")!,
-);
-const deluge = new DelugeAPI(
-  new URL(Deno.env.get("DELUGE_URL")!),
-  Deno.env.get("DELUGE_PASSWORD")!,
 );
 
 const sonarr = new SonarrAPI(
@@ -32,7 +27,6 @@ const sonarr = new SonarrAPI(
 
 export const services = {
   radarr,
-  deluge,
   sonarr,
 };
 

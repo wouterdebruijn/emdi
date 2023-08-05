@@ -1,5 +1,4 @@
 import { Handlers, PageProps } from "https://deno.land/x/fresh@1.1.1/server.ts";
-import { Torrent } from "../externals/Deluge.ts";
 import { Movie, MovieQueue } from "../externals/Radarr.ts";
 import { Series, SeriesQueue } from "../externals/Sonarr.ts";
 
