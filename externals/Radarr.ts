@@ -181,7 +181,9 @@ export class RadarrAPI extends ExternalApi {
         inCinemas: new Date(movie.inCinemas),
         physicalRelease: new Date(movie.physicalRelease),
         digitalRelease: new Date(movie.digitalRelease),
-        isDownloading: queue.some((queueItem) => queueItem.movieId === movie.id),
+        isDownloading: queue.some((queueItem) =>
+          queueItem.movieId === movie.id
+        ),
       };
     });
     return mapped;
