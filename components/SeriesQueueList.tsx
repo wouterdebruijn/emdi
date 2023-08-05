@@ -37,7 +37,6 @@ function SeriesQueueElement({ queueItem }: { queueItem: SeriesQueueExtended }) {
         class="w-40 h-60 bg-cover rounded-t"
         style={`background-image: url("${queueItem.image}");`}
       >
-        {queueItem.seriesId}
       </div>
       <div class="left-0 right-0 p-2 text-center">
         {queueItem.status === "paused"
