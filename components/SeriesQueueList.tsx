@@ -49,7 +49,7 @@ function SeriesQueueElement({ queueItem }: { queueItem: SeriesQueueExtended }) {
               0%
             </p>
           )
-          : <p class="inline pl-1">{progress.toFixed(2)}%</p>}
+          : <p class="inline pl-1">{progress.toFixed(0)}%</p>}
       </div>
     </div>
   );

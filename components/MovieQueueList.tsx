@@ -33,7 +33,7 @@ function MovieQueueElement({ movie }: { movie: MovieQueueExtended }) {
         {movie.status === "paused"
           ? <p class="text-yellow-500 inline">Paused</p>
           : <p class="text-green-500 inline">Downloading</p>}
-        <p class="inline pl-1">{progress.toFixed(2)}%</p>
+        <p class="inline pl-1">{progress.toFixed(0)}%</p>
       </div>
     </div>
   );
