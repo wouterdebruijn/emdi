@@ -79,6 +79,7 @@ export interface Series {
   ratings: Ratings;
   statistics?: Statistics;
   id: number;
+  isDownloading: boolean;
 }
 
 export interface Language {
@@ -154,12 +155,15 @@ export class SonarrAPI extends ExternalApi {
       headers: this.authenticationHeaders(),
     });
 
+    const queue = await this.getQueue();
+
     const mapped = response.map((series) => {
       return {
         ...series,
         added: new Date(series.added),
         previousAiring: new Date(series.previousAiring),
         firstAired: new Date(series.firstAired),
+        isDownloading: queue.some((item) => item.seriesId === series.id),
       };
     });
     return mapped;

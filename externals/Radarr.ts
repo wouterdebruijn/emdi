@@ -130,6 +130,7 @@ export interface Movie {
   movieFile: MovieFile;
   collection: Collection;
   id: number;
+  isDownloading: boolean;
 }
 
 export interface MovieQueue {
@@ -171,6 +172,8 @@ export class RadarrAPI extends ExternalApi {
       headers: this.authenticationHeaders(),
     });
 
+    const queue = await this.getQueue();
+
     const mapped = response.map((movie) => {
       return {
         ...movie,
@@ -178,6 +181,7 @@ export class RadarrAPI extends ExternalApi {
         inCinemas: new Date(movie.inCinemas),
         physicalRelease: new Date(movie.physicalRelease),
         digitalRelease: new Date(movie.digitalRelease),
+        isDownloading: queue.some((queueItem) => queueItem.movieId === movie.id),
       };
     });
     return mapped;

@@ -35,6 +35,11 @@ function MovieStatus({ movie }: { movie: Movie }) {
     return <p class="text-yellow-500">Searching</p>;
   }
 
+  // If the movie is downloading, we should have been downloading it.
+  if (movie.isDownloading) {
+    return <p class="text-blue-500">Downloading</p>;
+  }
+
   // If we don't have a file and the movie is released (metadata) we should have been downloading it.
   return <p class="text-red-500">Failed</p>;
 }

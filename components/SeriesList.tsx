@@ -26,6 +26,10 @@ function SeriesStatus({ series }: { series: Series }) {
     return <p class="text-yellow-500">Searching</p>;
   }
 
+  if (series.isDownloading) {
+    return <p class="text-blue-500">Downloading</p>;
+  }
+
   return <p class="text-red-500">Failed</p>;
 }
 
